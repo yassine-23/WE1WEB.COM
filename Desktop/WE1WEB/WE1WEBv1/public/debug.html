@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WE1WEB Debug</title>
+</head>
+<body>
+    <h1>Debug Information</h1>
+    <h2>Environment Variables Check:</h2>
+    <div id="env-check">Checking...</div>
+    
+    <h2>Deployment Info:</h2>
+    <ul>
+        <li>URL: <span id="url"></span></li>
+        <li>Time: <span id="time"></span></li>
+        <li>Vercel: <span id="vercel"></span></li>
+    </ul>
+
+    <h2>Test Supabase Connection:</h2>
+    <div id="supabase-test">Testing...</div>
+
+    <script>
+        // Check if we're on Vercel
+        document.getElementById('url').textContent = window.location.href;
+        document.getElementById('time').textContent = new Date().toISOString();
+        document.getElementById('vercel').textContent = window.location.hostname.includes('vercel') ? 'Yes' : 'No';
+        
+        // Check environment variables (these are baked in at build time)
+        const envVars = {
+            VITE_SUPABASE_URL: import.meta.env?.VITE_SUPABASE_URL || 'NOT SET',
+            VITE_SUPABASE_ANON_KEY: import.meta.env?.VITE_SUPABASE_ANON_KEY ? 'SET (hidden)' : 'NOT SET',
+            VITE_APP_NAME: import.meta.env?.VITE_APP_NAME || 'NOT SET'
+        };
+        
+        // Display env vars (safely)
+        document.getElementById('env-check').innerHTML = '<pre>' + JSON.stringify(envVars, null, 2) + '</pre>';
+        
+        // Try to connect to Supabase
+        if (envVars.VITE_SUPABASE_URL !== 'NOT SET') {
+            fetch(envVars.VITE_SUPABASE_URL + '/rest/v1/')
+                .then(r => {
+                    document.getElementById('supabase-test').textContent = 
+                        'Supabase URL reachable: ' + r.status;
+                })
+                .catch(e => {
+                    document.getElementById('supabase-test').textContent = 
+                        'Cannot reach Supabase: ' + e.message;
+                });
+        } else {
+            document.getElementById('supabase-test').textContent = 
+                'Cannot test - VITE_SUPABASE_URL not set';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+services:
+  # Web service for the main application
+  - type: web
+    name: we1web-app
+    runtime: node
+    repo: https://github.com/YOUR_USERNAME/we1web
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:all
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: STRIPE_PUBLISHABLE_KEY
+        sync: false
+      - key: FRONTEND_URL
+        value: https://we1web.onrender.com
+      - key: SIGNALING_PORT
+        value: 3001
+    healthCheckPath: /api/health
+    autoDeploy: true
+
+  # Background worker for WebSocket signaling server
+  - type: worker
+    name: we1web-signaling
+    runtime: node
+    repo: https://github.com/YOUR_USERNAME/we1web
+    buildCommand: npm install
+    startCommand: npm run start:signaling
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+
+# Database (if not using Supabase)
+databases:
+  - name: we1web-db
+    databaseName: we1web
+    user: we1web
+    plan: starter

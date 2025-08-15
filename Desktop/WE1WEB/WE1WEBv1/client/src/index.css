@@ -1,0 +1,367 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(240, 10%, 3.9%);
+  --muted: hsl(240, 4.8%, 95.9%);
+  --muted-foreground: hsl(240, 3.8%, 46.1%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(240, 10%, 3.9%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(240, 10%, 3.9%);
+  --border: hsl(240, 5.9%, 90%);
+  --input: hsl(240, 5.9%, 90%);
+  --primary: hsl(180, 40%, 35%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(240, 4.8%, 95.9%);
+  --secondary-foreground: hsl(240, 5.9%, 10%);
+  --accent: hsl(240, 4.8%, 95.9%);
+  --accent-foreground: hsl(240, 5.9%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 5.9%, 10%);
+  --radius: 0.75rem;
+  --neutral: hsl(210, 40%, 98%);
+  
+  /* Ultra-dimmed futuristic neon colors (50% less bright) */
+  --neon-cyan: hsl(180, 40%, 30%);
+  --neon-purple: hsl(270, 40%, 35%);
+  --neon-pink: hsl(320, 40%, 35%);
+  --neon-blue: hsl(240, 40%, 35%);
+  --neon-green: hsl(120, 40%, 30%);
+  --dark-bg: hsl(240, 10%, 3.9%);
+  --darker-bg: hsl(240, 15%, 2%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 7%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(180, 40%, 35%);
+  --primary-foreground: hsl(240, 10%, 3.9%);
+  --secondary: hsl(262, 41%, 45%);
+  --secondary-foreground: hsl(262, 41%, 98%);
+  --accent: hsl(142, 76%, 36%);
+  --accent-foreground: hsl(142, 76%, 96%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(180, 40%, 30%);
+  --radius: 0.75rem;
+  --neutral: hsl(210, 40%, 98%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Futuristic gradient backgrounds */
+.gradient-hero {
+  background: linear-gradient(135deg, 
+    hsl(240, 15%, 2%) 0%, 
+    hsl(240, 10%, 3.9%) 25%, 
+    hsl(180, 100%, 10%) 50%, 
+    hsl(270, 100%, 15%) 75%, 
+    hsl(240, 15%, 2%) 100%);
+  position: relative;
+}
+
+.gradient-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, hsl(180, 100%, 50%, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, hsl(270, 100%, 60%, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, hsl(320, 100%, 60%, 0.05) 0%, transparent 50%);
+  animation: aurora 15s ease-in-out infinite;
+}
+
+@keyframes aurora {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.modern-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--foreground));
+}
+
+/* Custom animations */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Clean text styling */
+.enhanced-text {
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.enhanced-border {
+  border: 2px solid hsl(var(--primary));
+  border-radius: 8px;
+}
+
+/* Clean subtle pattern */
+.subtle-pattern {
+  background: linear-gradient(45deg, 
+    transparent 48%, 
+    hsl(var(--muted) / 0.02) 50%, 
+    transparent 52%);
+  background-size: 20px 20px;
+}
+
+/* Clean grid background */
+.clean-grid {
+  background: 
+    linear-gradient(rgba(79, 209, 197, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 209, 197, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Ensure Three.js canvas has transparent background */
+canvas {
+  background: transparent !important;
+}
+
+/* Globe container styling */
+.globe-container {
+  background: transparent;
+  overflow: visible;
+}
+
+/* Data visualization animations */
+@keyframes data-flow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.data-stream {
+  animation: data-flow 2s linear infinite;
+}
+
+/* Particle effect */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Remove particle effects */
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Clean grid pattern */
+.clean-grid {
+  background-image: 
+    linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Remove scan line effects */
+
+/* Cyberpunk grid background */
+.cyberpunk-grid {
+  background-image: 
+    linear-gradient(hsl(180, 80%, 40%, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(180, 80%, 40%, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: grid-shift 20s linear infinite;
+}
+
+@keyframes grid-shift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Digital rain effect */
+.matrix-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.matrix-char {
+  position: absolute;
+  color: hsl(120, 100%, 50%);
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  animation: rain 10s linear infinite;
+}
+
+@keyframes rain {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Glitch text effect */
+.glitch {
+  position: relative;
+  animation: glitch 2s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  animation: glitch-1 0.5s infinite;
+  color: hsl(320, 100%, 60%);
+  z-index: -1;
+}
+
+.glitch::after {
+  animation: glitch-2 0.5s infinite;
+  color: hsl(180, 100%, 50%);
+  z-index: -2;
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(-2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(-2px, -2px); }
+}
+
+/* Progress bar styling */
+.progress-bar {
+  transition: width 0.3s ease-in-out;
+}
+
+/* Node status indicators */
+.status-online {
+  background: hsl(var(--accent));
+  box-shadow: 0 0 8px hsla(var(--accent), 0.4);
+}
+
+.status-offline {
+  background: hsl(var(--muted-foreground));
+}
+
+.status-busy {
+  background: hsl(45, 100%, 50%);
+  box-shadow: 0 0 8px hsla(45, 100%, 50%, 0.4);
+}
+
+
+/* Enhanced interactive elements */
+.button-interactive {
+  @apply transition-all duration-200 hover:scale-[1.05] active:scale-[0.98] hover:shadow-lg;
+}
+
+.interactive-card {
+  @apply bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-primary cursor-pointer hover:bg-accent;
+}
+
+.feature-card {
+  @apply bg-card border border-border rounded-lg p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:scale-[1.05] hover:border-primary cursor-pointer;
+}
+
+.nav-link {
+  @apply flex items-center gap-3 px-4 py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 hover:scale-[1.02] cursor-pointer;
+}
+
+.nav-link.active {
+  @apply bg-primary text-primary-foreground border border-primary;
+}
+
+.smooth-transition {
+  @apply transition-all duration-300 ease-in-out;
+}

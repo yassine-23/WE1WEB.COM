@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test WE1WEB</title>
+    <style>
+        body {
+            background: black;
+            color: white;
+            font-family: sans-serif;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Testing WE1WEB Application</h1>
+    <p>If you can see this, the server is working.</p>
+    
+    <h2>Check these URLs:</h2>
+    <ul>
+        <li><a href="http://localhost:5173" style="color: cyan;">Main App (localhost:5173)</a></li>
+        <li><a href="http://localhost:3000/api/health" style="color: cyan;">API Health Check</a></li>
+    </ul>
+    
+    <h2>Debugging Steps:</h2>
+    <ol>
+        <li>Open Browser Developer Tools (F12)</li>
+        <li>Go to Console tab</li>
+        <li>Look for any red error messages</li>
+        <li>Common issues:
+            <ul>
+                <li>Module not found errors</li>
+                <li>Supabase connection errors</li>
+                <li>React errors</li>
+            </ul>
+        </li>
+    </ol>
+    
+    <script>
+        fetch('http://localhost:3000/api/health')
+            .then(r => r.json())
+            .then(data => {
+                document.body.innerHTML += '<p style="color: green;">✅ API is working: ' + JSON.stringify(data) + '</p>';
+            })
+            .catch(err => {
+                document.body.innerHTML += '<p style="color: red;">❌ API Error: ' + err + '</p>';
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WE1WEB Test</title>
+</head>
+<body>
+    <h1>WE1WEB Deployment Test</h1>
+    <p>If you can see this, the deployment is working!</p>
+    <p>The issue is with the React app configuration.</p>
+    <h2>Debug Info:</h2>
+    <ul>
+        <li>Time: <span id="time"></span></li>
+        <li>Domain: <span id="domain"></span></li>
+    </ul>
+    <script>
+        document.getElementById('time').textContent = new Date().toISOString();
+        document.getElementById('domain').textContent = window.location.hostname;
+    </script>
+</body>
+</html>

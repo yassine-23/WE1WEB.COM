@@ -33,19 +33,19 @@ function Router() {
 
   return (
     <Switch>
+      {/* Always show Landing page as default */}
+      <Route path="/" component={Landing} />
+      <Route path="/auth" component={() => <SimpleLogin onLogin={() => window.location.href = "/dashboard"} />} />
+      
       {isLoading ? (
-        <div className="min-h-screen bg-background flex items-center justify-center">
-          <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full" />
-        </div>
-      ) : !isAuthenticated ? (
+        <Route path="/dashboard">
+          <div className="min-h-screen bg-background flex items-center justify-center">
+            <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full" />
+          </div>
+        </Route>
+      ) : isAuthenticated ? (
         <>
-          <Route path="/" component={Landing} />
-          <Route path="/auth" component={() => <SimpleLogin onLogin={() => window.location.href = "/"} />} />
-          <Route component={() => <SimpleLogin onLogin={() => window.location.href = "/"} />} />
-        </>
-      ) : (
-        <>
-          <Route path="/" component={Home} />
+          <Route path="/dashboard" component={Home} />
           <Route path="/onboarding">
             <Suspense fallback={<LoadingFallback message="Loading onboarding..." />}>
               <LazyOnboarding />
@@ -106,9 +106,13 @@ function Router() {
               <LazyMonitoring />
             </Suspense>
           </Route>
-          <Route path="/:rest*" component={NotFound} />
         </>
+      ) : (
+        <Route path="/dashboard">
+          <SimpleLogin onLogin={() => window.location.href = "/dashboard"} />
+        </Route>
       )}
+      <Route path="/:rest*" component={NotFound} />
     </Switch>
   );
 }

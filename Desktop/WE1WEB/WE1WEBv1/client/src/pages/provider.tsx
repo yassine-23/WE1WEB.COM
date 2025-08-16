@@ -61,11 +61,11 @@ export default function Provider() {
   };
 
   const earnings = {
-    today: 94.20,
-    thisWeek: 658.40,
-    thisMonth: 2847.65,
-    allTime: 48291.84,
-    potential: 156.40,
+    today: 94,
+    thisWeek: 658,
+    thisMonth: 2847,
+    allTime: 48291,
+    potential: 156,
     efficiency: 98.7
   };
 
@@ -85,7 +85,7 @@ export default function Provider() {
       type: "language_model",
       progress: 67,
       timeRemaining: "2h 14m",
-      earning: 12.47,
+      earning: 12,
       priority: "high"
     },
     {
@@ -94,70 +94,66 @@ export default function Provider() {
       type: "image_classification",
       progress: 23,
       timeRemaining: "6h 45m",
-      earning: 28.95,
+      earning: 28,
       priority: "medium"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 cyberpunk-grid opacity-20"></div>
-      <div className="absolute inset-0 gradient-hero opacity-30"></div>
-      
+    <div className="min-h-screen bg-background">
       <Navigation />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center space-x-4 mb-4">
-            <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center neon-border">
+            <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center">
               <Server className="text-white w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold neon-text text-primary">Compute Provider Hub</h1>
-              <p className="text-gray-300 text-lg">Neural network resource optimization center</p>
+              <h1 className="text-4xl font-bold text-primary">Compute Provider Hub</h1>
+              <p className="text-muted-foreground text-lg">Share your compute resources and earn credits</p>
             </div>
           </div>
           
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="futuristic-card p-4 rounded-xl">
+            <Card className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold text-primary neon-text">${earnings.today.toFixed(2)}</div>
-                  <div className="text-sm text-gray-400">Today's Earnings</div>
+                  <div className="text-2xl font-bold text-primary">{earnings.today} Credits</div>
+                  <div className="text-sm text-muted-foreground">Today's Compute Credits</div>
                 </div>
-                <DollarSign className="w-8 h-8 text-primary" />
+                <Cpu className="w-8 h-8 text-primary" />
               </div>
-            </div>
-            <div className="futuristic-card p-4 rounded-xl">
+            </Card>
+            <Card className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold text-green-400 neon-text">{nodeStatus.tasksCompleted}</div>
-                  <div className="text-sm text-gray-400">Tasks Completed</div>
+                  <div className="text-2xl font-bold text-green-500">{nodeStatus.tasksCompleted}</div>
+                  <div className="text-sm text-muted-foreground">Tasks Completed</div>
                 </div>
-                <Activity className="w-8 h-8 text-green-400" />
+                <Activity className="w-8 h-8 text-green-500" />
               </div>
-            </div>
-            <div className="futuristic-card p-4 rounded-xl">
+            </Card>
+            <Card className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold text-purple-400 neon-text">{nodeStatus.reliability}%</div>
-                  <div className="text-sm text-gray-400">Reliability Score</div>
+                  <div className="text-2xl font-bold text-purple-500">{nodeStatus.reliability}%</div>
+                  <div className="text-sm text-muted-foreground">Reliability Score</div>
                 </div>
-                <Shield className="w-8 h-8 text-purple-400" />
+                <Shield className="w-8 h-8 text-purple-500" />
               </div>
-            </div>
-            <div className="futuristic-card p-4 rounded-xl">
+            </Card>
+            <Card className="p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold text-orange-400 neon-text">#{nodeStatus.networkRank}</div>
-                  <div className="text-sm text-gray-400">Network Rank</div>
+                  <div className="text-2xl font-bold text-orange-500">#{nodeStatus.networkRank}</div>
+                  <div className="text-sm text-muted-foreground">Network Rank</div>
                 </div>
-                <Star className="w-8 h-8 text-orange-400" />
+                <Star className="w-8 h-8 text-orange-500" />
               </div>
-            </div>
+            </Card>
           </div>
         </div>
 
@@ -167,52 +163,52 @@ export default function Provider() {
           <div className="lg:col-span-2 space-y-8">
             
             {/* Active Tasks */}
-            <div className="futuristic-card p-6 rounded-2xl">
+            <Card className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-white flex items-center">
+                <h2 className="text-2xl font-bold flex items-center">
                   <Activity className="mr-3 w-6 h-6 text-primary" />
-                  Active Neural Networks
+                  Active Compute Tasks
                 </h2>
-                <Badge className="bg-green-500/20 text-green-400 neon-border">
+                <Badge className="bg-green-500/20 text-green-500">
                   {activeTasks.length} Running
                 </Badge>
               </div>
               
               <div className="space-y-4">
                 {activeTasks.map((task) => (
-                  <div key={task.id} className="bg-background/50 p-5 rounded-xl border border-primary/20 scan-line">
+                  <div key={task.id} className="bg-muted/50 p-5 rounded-xl border">
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <h3 className="text-lg font-semibold text-white">{task.name}</h3>
-                        <div className="flex items-center space-x-4 text-sm text-gray-400">
+                        <h3 className="text-lg font-semibold">{task.name}</h3>
+                        <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                           <span className="capitalize">{task.type.replace('_', ' ')}</span>
                           <span>•</span>
-                          <span className={`flex items-center ${task.priority === 'high' ? 'text-red-400' : 'text-yellow-400'}`}>
+                          <span className={`flex items-center ${task.priority === 'high' ? 'text-red-500' : 'text-yellow-500'}`}>
                             <AlertTriangle className="w-3 h-3 mr-1" />
                             {task.priority} priority
                           </span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-xl font-bold text-primary neon-text">+${task.earning}</div>
-                        <div className="text-sm text-gray-400">{task.timeRemaining} remaining</div>
+                        <div className="text-xl font-bold text-primary">+{task.earning} Credits</div>
+                        <div className="text-sm text-muted-foreground">{task.timeRemaining} remaining</div>
                       </div>
                     </div>
                     
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">Progress</span>
-                        <span className="text-white font-medium">{task.progress}%</span>
+                        <span className="text-muted-foreground">Progress</span>
+                        <span className="font-medium">{task.progress}%</span>
                       </div>
-                      <Progress value={task.progress} className="h-2 bg-background border border-primary/20" />
+                      <Progress value={task.progress} className="h-2" />
                     </div>
                     
                     <div className="flex space-x-2 mt-4">
-                      <Button size="sm" variant="outline" className="neon-border text-primary">
+                      <Button size="sm" variant="outline">
                         <Pause className="w-3 h-3 mr-1" />
                         Pause
                       </Button>
-                      <Button size="sm" variant="ghost" className="text-gray-400">
+                      <Button size="sm" variant="ghost">
                         <Settings className="w-3 h-3 mr-1" />
                         Configure
                       </Button>
@@ -221,15 +217,15 @@ export default function Provider() {
                 ))}
               </div>
               
-              <Button className="w-full mt-6 bg-primary/10 hover:bg-primary/20 text-primary neon-border">
+              <Button className="w-full mt-6" variant="outline">
                 <Play className="mr-2 w-4 h-4" />
                 Accept New Task
               </Button>
-            </div>
+            </Card>
 
             {/* Hardware Monitoring */}
-            <div className="futuristic-card p-6 rounded-2xl">
-              <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+            <Card className="p-6">
+              <h2 className="text-2xl font-bold mb-6 flex items-center">
                 <Cpu className="mr-3 w-6 h-6 text-primary" />
                 Real-time Hardware Monitor
               </h2>
@@ -244,46 +240,46 @@ export default function Provider() {
                   
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-400">{hardwareStats.gpu.model}</span>
-                      <Badge variant="outline" className="text-primary">
+                      <span className="text-muted-foreground">{hardwareStats.gpu.model}</span>
+                      <Badge variant="outline">
                         {hardwareStats.gpu.tflops} TFLOPS
                       </Badge>
                     </div>
                     
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">Utilization</span>
-                        <span className="text-white font-medium">{hardwareStats.gpu.utilization}%</span>
+                        <span className="text-muted-foreground">Utilization</span>
+                        <span className="font-medium">{hardwareStats.gpu.utilization}%</span>
                       </div>
-                      <Progress value={hardwareStats.gpu.utilization} className="h-2 bg-background" />
+                      <Progress value={hardwareStats.gpu.utilization} className="h-2" />
                     </div>
                     
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">VRAM Usage</span>
-                        <span className="text-white font-medium">
+                        <span className="text-muted-foreground">VRAM Usage</span>
+                        <span className="font-medium">
                           {hardwareStats.gpu.memory.used}GB / {hardwareStats.gpu.memory.total}GB
                         </span>
                       </div>
                       <Progress 
                         value={(hardwareStats.gpu.memory.used / hardwareStats.gpu.memory.total) * 100} 
-                        className="h-2 bg-background" 
+                        className="h-2" 
                       />
                     </div>
                     
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <span className="text-gray-400">Temperature</span>
+                        <span className="text-muted-foreground">Temperature</span>
                         <div className="flex items-center">
-                          <Thermometer className="w-3 h-3 mr-1 text-orange-400" />
-                          <span className="text-white font-medium">{hardwareStats.gpu.temperature}°C</span>
+                          <Thermometer className="w-3 h-3 mr-1 text-orange-500" />
+                          <span className="font-medium">{hardwareStats.gpu.temperature}°C</span>
                         </div>
                       </div>
                       <div>
-                        <span className="text-gray-400">Power Draw</span>
+                        <span className="text-muted-foreground">Power Draw</span>
                         <div className="flex items-center">
-                          <Zap className="w-3 h-3 mr-1 text-yellow-400" />
-                          <span className="text-white font-medium">{hardwareStats.gpu.power}W</span>
+                          <Zap className="w-3 h-3 mr-1 text-yellow-500" />
+                          <span className="font-medium">{hardwareStats.gpu.power}W</span>
                         </div>
                       </div>
                     </div>
@@ -299,230 +295,230 @@ export default function Provider() {
                   
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-400">{hardwareStats.cpu.model}</span>
-                      <Badge variant="outline" className="text-secondary">
+                      <span className="text-muted-foreground">{hardwareStats.cpu.model}</span>
+                      <Badge variant="outline">
                         {hardwareStats.cpu.cores} Cores
                       </Badge>
                     </div>
                     
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">CPU Usage</span>
-                        <span className="text-white font-medium">{hardwareStats.cpu.utilization}%</span>
+                        <span className="text-muted-foreground">CPU Usage</span>
+                        <span className="font-medium">{hardwareStats.cpu.utilization}%</span>
                       </div>
-                      <Progress value={hardwareStats.cpu.utilization} className="h-2 bg-background" />
+                      <Progress value={hardwareStats.cpu.utilization} className="h-2" />
                     </div>
                     
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">RAM Usage</span>
-                        <span className="text-white font-medium">
+                        <span className="text-muted-foreground">RAM Usage</span>
+                        <span className="font-medium">
                           {hardwareStats.system.ram.used}GB / {hardwareStats.system.ram.total}GB
                         </span>
                       </div>
                       <Progress 
                         value={(hardwareStats.system.ram.used / hardwareStats.system.ram.total) * 100} 
-                        className="h-2 bg-background" 
+                        className="h-2" 
                       />
                     </div>
                     
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <span className="text-gray-400">Network</span>
+                        <span className="text-muted-foreground">Network</span>
                         <div className="flex items-center">
-                          <Wifi className="w-3 h-3 mr-1 text-blue-400" />
-                          <span className="text-white font-medium">{hardwareStats.system.network.download} Mbps</span>
+                          <Wifi className="w-3 h-3 mr-1 text-blue-500" />
+                          <span className="font-medium">{hardwareStats.system.network.download} Mbps</span>
                         </div>
                       </div>
                       <div>
-                        <span className="text-gray-400">Uptime</span>
+                        <span className="text-muted-foreground">Uptime</span>
                         <div className="flex items-center">
-                          <Clock className="w-3 h-3 mr-1 text-green-400" />
-                          <span className="text-white font-medium">{hardwareStats.system.uptime}</span>
+                          <Clock className="w-3 h-3 mr-1 text-green-500" />
+                          <span className="font-medium">{hardwareStats.system.uptime}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Compute Pools */}
-            <div className="futuristic-card p-6 rounded-2xl">
-              <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
+            <Card className="p-6">
+              <h2 className="text-2xl font-bold mb-6 flex items-center">
                 <Users className="mr-3 w-6 h-6 text-primary" />
-                Neural Pool Networks
+                Compute Pool Networks
               </h2>
               
               <div className="space-y-4">
-                <div className="bg-background/50 p-5 rounded-xl border border-green-500/30">
+                <div className="bg-muted/50 p-5 rounded-xl border border-green-500/30">
                   <div className="flex justify-between items-start mb-3">
                     <div>
-                      <h3 className="text-lg font-semibold text-white">AI Research Consortium</h3>
-                      <p className="text-sm text-gray-400">Collaborative research projects • 1,247 members</p>
+                      <h3 className="text-lg font-semibold">AI Research Consortium</h3>
+                      <p className="text-sm text-muted-foreground">Collaborative research projects • 1,247 members</p>
                     </div>
-                    <Badge className="bg-green-500/20 text-green-400 neon-border">Active</Badge>
+                    <Badge className="bg-green-500/20 text-green-500">Active</Badge>
                   </div>
                   <div className="grid grid-cols-3 gap-4 text-sm">
                     <div>
-                      <span className="text-gray-400">Bonus Rate:</span>
-                      <span className="font-medium ml-1 text-green-400">+23%</span>
+                      <span className="text-muted-foreground">Bonus Rate:</span>
+                      <span className="font-medium ml-1 text-green-500">+23%</span>
                     </div>
                     <div>
-                      <span className="text-gray-400">Focus:</span>
-                      <span className="font-medium ml-1 text-white">LLM Training</span>
+                      <span className="text-muted-foreground">Focus:</span>
+                      <span className="font-medium ml-1">LLM Training</span>
                     </div>
                     <div>
-                      <span className="text-gray-400">Earnings:</span>
-                      <span className="font-medium ml-1 text-primary">$247.85/day</span>
+                      <span className="text-muted-foreground">Earnings:</span>
+                      <span className="font-medium ml-1 text-primary">247 Credits/day</span>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-background/30 p-5 rounded-xl border border-primary/20 border-dashed">
+                <div className="bg-muted/30 p-5 rounded-xl border border-dashed">
                   <div className="text-center">
-                    <Users className="w-12 h-12 text-gray-500 mx-auto mb-3" />
-                    <h3 className="text-lg font-semibold text-gray-400 mb-2">Join More Pools</h3>
-                    <p className="text-sm text-gray-500 mb-4">
+                    <Users className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
+                    <h3 className="text-lg font-semibold mb-2">Join More Pools</h3>
+                    <p className="text-sm text-muted-foreground mb-4">
                       Increase earnings by joining specialized compute pools
                     </p>
-                    <Button variant="outline" className="neon-border text-primary">
+                    <Button variant="outline">
                       Browse Available Pools
                     </Button>
                   </div>
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
 
           {/* Right Sidebar */}
           <div className="space-y-8">
             
             {/* Earnings Analytics */}
-            <div className="futuristic-card p-6 rounded-2xl">
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                <DollarSign className="mr-2 w-5 h-5 text-primary" />
-                Earnings Matrix
+            <Card className="p-6">
+              <h3 className="text-xl font-bold mb-6 flex items-center">
+                <Cpu className="mr-2 w-5 h-5 text-primary" />
+                Compute Credits
               </h3>
               
               <div className="space-y-6">
-                <div className="text-center p-4 bg-primary/10 rounded-xl neon-border">
-                  <div className="text-3xl font-bold text-primary neon-text">
-                    ${earnings.thisMonth.toLocaleString()}
+                <div className="text-center p-4 bg-primary/10 rounded-xl">
+                  <div className="text-3xl font-bold text-primary">
+                    {earnings.thisMonth.toLocaleString()}
                   </div>
-                  <div className="text-gray-400 text-sm">This Month</div>
+                  <div className="text-muted-foreground text-sm">Credits This Month</div>
                 </div>
                 
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-400">Today</span>
-                    <span className="font-bold text-green-400">${earnings.today}</span>
+                    <span className="text-muted-foreground">Today</span>
+                    <span className="font-bold text-green-500">{earnings.today}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-400">This Week</span>
-                    <span className="font-bold text-blue-400">${earnings.thisWeek}</span>
+                    <span className="text-muted-foreground">This Week</span>
+                    <span className="font-bold text-blue-500">{earnings.thisWeek}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-400">All Time</span>
-                    <span className="font-bold text-purple-400">${earnings.allTime.toLocaleString()}</span>
+                    <span className="text-muted-foreground">All Time</span>
+                    <span className="font-bold text-purple-500">{earnings.allTime.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-400">Potential (24/7)</span>
-                    <span className="font-bold text-orange-400">${earnings.potential}/day</span>
+                    <span className="text-muted-foreground">Potential (24/7)</span>
+                    <span className="font-bold text-orange-500">{earnings.potential}/day</span>
                   </div>
                 </div>
                 
-                <div className="p-3 bg-background/50 rounded-lg border border-primary/20">
-                  <div className="text-xs text-gray-400 mb-1">Neural Optimization Tip</div>
-                  <div className="text-sm text-gray-300">
+                <div className="p-3 bg-muted rounded-lg">
+                  <div className="text-xs text-muted-foreground mb-1">Optimization Tip</div>
+                  <div className="text-sm">
                     Enable overnight processing to boost earnings by 67%
                   </div>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Node Performance */}
-            <div className="futuristic-card p-6 rounded-2xl">
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+            <Card className="p-6">
+              <h3 className="text-xl font-bold mb-6 flex items-center">
                 <Activity className="mr-2 w-5 h-5 text-secondary" />
                 Node Statistics
               </h3>
               
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Compute Score</span>
-                  <span className="font-bold text-primary neon-text">{nodeStatus.computeScore.toLocaleString()}</span>
+                  <span className="text-muted-foreground">Compute Score</span>
+                  <span className="font-bold text-primary">{nodeStatus.computeScore.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Network Rank</span>
-                  <span className="font-bold text-orange-400">#{nodeStatus.networkRank}</span>
+                  <span className="text-muted-foreground">Network Rank</span>
+                  <span className="font-bold text-orange-500">#{nodeStatus.networkRank}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Reliability Score</span>
-                  <span className="font-bold text-green-400">{nodeStatus.reliability}%</span>
+                  <span className="text-muted-foreground">Reliability Score</span>
+                  <span className="font-bold text-green-500">{nodeStatus.reliability}%</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Efficiency Rating</span>
-                  <span className="font-bold text-blue-400">{earnings.efficiency}%</span>
+                  <span className="text-muted-foreground">Efficiency Rating</span>
+                  <span className="font-bold text-blue-500">{earnings.efficiency}%</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Total Jobs</span>
-                  <span className="font-bold text-purple-400">{nodeStatus.totalJobs}</span>
+                  <span className="text-muted-foreground">Total Jobs</span>
+                  <span className="font-bold text-purple-500">{nodeStatus.totalJobs}</span>
                 </div>
               </div>
-            </div>
+            </Card>
 
             {/* Control Panel */}
-            <div className="futuristic-card p-6 rounded-2xl">
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center">
+            <Card className="p-6">
+              <h3 className="text-xl font-bold mb-6 flex items-center">
                 <Settings className="mr-2 w-5 h-5 text-primary" />
-                Neural Control Center
+                Control Center
               </h3>
               
               <div className="space-y-4">
-                <Button className="w-full bg-primary/20 hover:bg-primary/30 text-primary neon-border">
+                <Button className="w-full" variant="default">
                   <TrendingUp className="mr-2 w-4 h-4" />
                   Optimize Performance
                 </Button>
-                <Button className="w-full bg-background/50 hover:bg-background/70 text-white border border-secondary/30">
+                <Button className="w-full" variant="outline">
                   <RotateCcw className="mr-2 w-4 h-4" />
                   Restart Node
                 </Button>
-                <Button className="w-full bg-background/50 hover:bg-background/70 text-white border border-gray-500/30">
+                <Button className="w-full" variant="outline">
                   <Download className="mr-2 w-4 h-4" />
                   Export Analytics
                 </Button>
-                <Button className="w-full bg-background/50 hover:bg-background/70 text-white border border-purple-500/30">
+                <Button className="w-full" variant="outline">
                   <Users className="mr-2 w-4 h-4" />
                   Refer Providers
                 </Button>
               </div>
-            </div>
+            </Card>
 
-            {/* Token Balance */}
-            <div className="futuristic-card p-6 rounded-2xl">
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                <Zap className="mr-2 w-5 h-5 text-yellow-400" />
-                COMP Tokens
+            {/* Credit Balance */}
+            <Card className="p-6">
+              <h3 className="text-xl font-bold mb-6 flex items-center">
+                <Zap className="mr-2 w-5 h-5 text-yellow-500" />
+                Credit Balance
               </h3>
               
               <div className="text-center mb-4">
-                <div className="text-3xl font-bold text-yellow-400 neon-text">
-                  {balance?.balance || '0'} COMP
+                <div className="text-3xl font-bold text-yellow-500">
+                  {balance?.balance || '0'}
                 </div>
-                <div className="text-gray-400 text-sm">Available Balance</div>
+                <div className="text-muted-foreground text-sm">Available Credits</div>
               </div>
               
               <div className="space-y-3">
-                <Button className="w-full bg-yellow-400/20 hover:bg-yellow-400/30 text-yellow-400 border border-yellow-400/30">
+                <Button className="w-full" variant="default">
                   <DollarSign className="mr-2 w-4 h-4" />
-                  Withdraw Tokens
+                  Withdraw Credits
                 </Button>
-                <Button variant="ghost" className="w-full text-gray-400">
+                <Button variant="ghost" className="w-full">
                   View Transaction History
                 </Button>
               </div>
-            </div>
+            </Card>
           </div>
         </div>
       </div>

@@ -15,22 +15,23 @@ export default function Navigation() {
     enabled: isAuthenticated,
   });
 
-  if (!isAuthenticated) {
-    return null;
-  }
+  // Show navigation on all pages, including landing
+  // Only hide auth-specific features when not authenticated
 
-  const navItems = [
-    { path: "/", label: "Dashboard" },
-    { path: "/enhanced-provider", label: "Provider Hub" },
-    { path: "/developer", label: "AI Developer" },
+  const navItems = isAuthenticated ? [
+    { path: "/dashboard", label: "Dashboard" },
+    { path: "/provider", label: "Provider Hub" },
+    { path: "/developer", label: "Developer Tools" },
     { path: "/marketplace", label: "Marketplace" },
-    { path: "/neural-pools", label: "Neural Pools" },
+    { path: "/compute-network", label: "Compute Network" },
     { path: "/community", label: "Community" },
-    { path: "/donate", label: "Donate", icon: Heart },
+  ] : [
+    { path: "/", label: "Home" },
+    { path: "/auth", label: "Get Started" },
   ];
 
   // Add monitoring link for admin users
-  const isAdmin = user?.email?.includes('admin') || process.env.NODE_ENV === 'development';
+  const isAdmin = isAuthenticated && (user?.email?.includes('admin') || process.env.NODE_ENV === 'development');
   if (isAdmin) {
     navItems.push({ path: "/monitoring", label: "Monitoring", icon: Activity });
   }
@@ -67,39 +68,49 @@ export default function Navigation() {
           </div>
 
           <div className="flex items-center space-x-4">
-            {tokenBalance && (
+            {isAuthenticated && tokenBalance && (
               <div className="hidden md:flex items-center space-x-2 bg-muted px-3 py-1 rounded-full">
-                <Coins className="text-primary w-4 h-4" />
+                <Cpu className="text-primary w-4 h-4" />
                 <span className="text-sm font-medium text-foreground">
-                  {Math.round(tokenBalance.balance)} COMP
+                  {Math.round(tokenBalance.balance)} Credits
                 </span>
               </div>
             )}
             
             <ThemeToggle />
             
-            <Link href="/profile">
-              <Avatar className="w-8 h-8 cursor-pointer hover:ring-2 hover:ring-primary hover:ring-offset-2 transition-all">
-                <AvatarImage src={user?.profileImageUrl || ""} />
-                <AvatarFallback className="bg-primary text-primary-foreground text-sm font-semibold">
-                  {user?.name ? user.name.split(' ').map(n => n[0]).join('').toUpperCase() : 
-                   user?.email ? user.email[0].toUpperCase() : 'U'}
-                </AvatarFallback>
-              </Avatar>
-            </Link>
-            
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => {
-                // Clear demo user and refresh
-                localStorage.removeItem('demoUser');
-                window.location.href = "/";
-              }}
-            >
-              <LogOut className="w-4 h-4 mr-2" />
-              Logout
-            </Button>
+            {isAuthenticated ? (
+              <>
+                <Link href="/profile">
+                  <Avatar className="w-8 h-8 cursor-pointer hover:ring-2 hover:ring-primary hover:ring-offset-2 transition-all">
+                    <AvatarImage src={user?.profileImageUrl || ""} />
+                    <AvatarFallback className="bg-primary text-primary-foreground text-sm font-semibold">
+                      {user?.name ? user.name.split(' ').map(n => n[0]).join('').toUpperCase() : 
+                       user?.email ? user.email[0].toUpperCase() : 'U'}
+                    </AvatarFallback>
+                  </Avatar>
+                </Link>
+                
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    // Clear demo user and refresh
+                    localStorage.removeItem('demoUser');
+                    window.location.href = "/";
+                  }}
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Link href="/auth">
+                <Button variant="default" size="sm">
+                  Get Started
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

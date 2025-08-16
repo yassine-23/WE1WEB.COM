@@ -4,7 +4,6 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Suspense, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { SimpleLogin } from "@/components/auth/simple-login";
@@ -129,17 +128,16 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Temporarily remove ErrorBoundary to see the actual error
   return (
-    <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider defaultTheme="dark" storageKey="we1web-ui-theme">
-          <TooltipProvider>
-            <Toaster />
-            <Router />
-          </TooltipProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider defaultTheme="dark" storageKey="we1web-ui-theme">
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 

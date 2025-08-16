@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WE1WEB Simple Test</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+        }
+        .status {
+            padding: 1rem;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        .error {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: rgba(255, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>WE1WEB Platform Test</h1>
+        <p>If you can see this page, the deployment is working correctly!</p>
+        <div class="status">
+            ✅ Static files are being served
+        </div>
+        <p>The React app should load at the root domain.</p>
+        <p>
+            <a href="/" style="color: #00ffff;">Go to Main App →</a>
+        </p>
+    </div>
+</body>
+</html>

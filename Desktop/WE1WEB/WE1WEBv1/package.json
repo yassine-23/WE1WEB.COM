@@ -8,13 +8,19 @@
     "dev:server": "nodemon server/index.js",
     "dev:signaling": "nodemon server/signaling-server.js",
     "dev:client": "vite",
-    "build": "vite build",
+    "build": "npm run build:production",
+    "build:production": "vite build",
+    "build:analyze": "ANALYZE=true vite build --config vite.config.production.ts",
+    "clean:console": "node scripts/remove-console.js",
     "preview": "vite preview",
     "start": "NODE_ENV=production node server/index.js",
     "start:signaling": "NODE_ENV=production node server/signaling-server.js",
-    "start:all": "concurrently \"npm run start\" \"npm run start:signaling\"",
+    "start:all": "NODE_ENV=production concurrently \"npm run start\" \"npm run start:signaling\"",
     "migrate": "node scripts/run-migrations.js",
-    "stripe:listen": "stripe listen --forward-to localhost:3000/api/payments/webhook/stripe"
+    "stripe:listen": "stripe listen --forward-to localhost:3000/api/payments/webhook/stripe",
+    "test:security": "npm audit",
+    "deploy:vercel": "vercel --prod",
+    "deploy:check": "node scripts/deployment-check.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
@@ -44,12 +50,16 @@
     "@types/three": "^0.179.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.0",
     "express": "^4.21.2",
+    "express-mongo-sanitize": "^2.2.0",
     "express-rate-limit": "^8.0.1",
     "framer-motion": "^11.13.1",
+    "helmet": "^8.1.0",
+    "hpp": "^0.2.3",
     "lucide-react": "^0.453.0",
     "qrcode": "^1.5.3",
     "react": "^18.3.1",
@@ -64,6 +74,7 @@
     "terser": "^5.43.1",
     "three": "^0.179.1",
     "wouter": "^3.3.5",
+    "xss-clean": "^0.1.4",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -74,10 +85,13 @@
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
     "concurrently": "^8.2.2",
+    "cssnano": "^7.1.0",
     "nodemon": "^3.0.2",
     "postcss": "^8.4.47",
+    "rollup-plugin-visualizer": "^6.0.3",
     "tailwindcss": "^3.4.17",
     "typescript": "5.6.3",
-    "vite": "^5.4.19"
+    "vite": "^7.1.2",
+    "vite-plugin-compression": "^0.5.1"
   }
 }

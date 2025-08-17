@@ -7,10 +7,11 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Suspense, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { SimpleLogin } from "@/components/auth/simple-login";
-import Landing from "@/pages/landing";
+import Landing from "@/pages/landing-new";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
 import LoadingFallback from "@/components/lazy-loader";
+import { errorTracker } from "@/lib/error-tracking";
 import {
   LazyOnboarding,
   LazyProvider,

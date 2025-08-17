@@ -1,17 +1,48 @@
-# WE1WEB - Europe's Democratic Supercomputer
+# 🧠 WE1WEB - The World's Largest Decentralized Living Neural Network
 
-## 🌍 Mission
-Transforming 83 million German smartphones into humanity's insurance policy against AI monopolization, while creating the world's first truly democratic supercomputer. Europe is leading the world's most important technological revolution.
+<div align="center">
+  <img src="client/public/logo.png" alt="WE1WEB Logo" width="200"/>
+  
+  **Building humanity's AI brain through personal devices**
+  
+  [![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
+  [![Status: Production](https://img.shields.io/badge/Status-Production-green.svg)]()
+  [![Powered by: Humanity](https://img.shields.io/badge/Powered%20by-Humanity-blue.svg)]()
+  
+  [Website](https://we1web.vercel.app) • [Documentation](docs/) • [Contact](mailto:yassinedrani23@gmail.com)
+</div>
 
-## Overview
-WE1WEB is a revolutionary platform that transforms idle personal devices into a massive distributed computing network, enabling users to earn €50-100/month while contributing to breaking Big Tech's AI monopoly.
+---
 
-## Features
-- 🔐 User authentication with Supabase
-- 💰 Dashboard for tracking earnings
-- 👥 Community pools for collaborative computing
-- 📱 Mobile app download links (Coming Soon)
-- 🌐 Real-time network statistics
+## 🌍 Our Vision
+
+WE1WEB is building the **world's largest decentralized living neural network** powered by personal devices for AI infrastructure, giving all control to humanity and coexisting with AI, solving the AI alignment threat by being its brain, leveraging existing hardware that is increasingly more powerful, saving billions of dollars in new energy-hungry data centers in a climate change era while giving an alternative for UBI in a community-driven way, not under the mercy of big tech, breaking its monopoly and democratizing access to AI.
+
+## 🚀 Revolutionary Features
+
+### 🧬 Living Neural Network
+- **Distributed Intelligence**: Every device becomes a neuron in humanity's collective brain
+- **Self-Organizing**: The network adapts and evolves based on usage patterns
+- **Consensus Validation**: Multi-node verification ensures accuracy and trust
+- **Real-time Learning**: The network continuously improves through collective intelligence
+
+### 💰 Economic Empowerment
+- **Universal Basic Income Alternative**: Earn by contributing computing power
+- **Instant Payments**: Automated Stripe payouts for completed tasks
+- **Fair Distribution**: Rewards based on contribution and reliability
+- **No Middlemen**: Direct peer-to-peer value exchange
+
+### 🔐 Security & Privacy
+- **End-to-End Encryption**: All data channels are secured
+- **Decentralized Control**: No single point of failure or control
+- **User Sovereignty**: You own your data and computing resources
+- **Transparent Operations**: Open metrics and network statistics
+
+### 🌱 Environmental Impact
+- **Zero New Hardware**: Utilizes existing devices
+- **Energy Efficient**: Reduces need for massive data centers
+- **Carbon Negative**: Prevents construction of new facilities
+- **Sustainable Computing**: Maximizes hardware lifecycle
 
 ## Tech Stack
 - **Frontend**: React + TypeScript + Vite
@@ -113,8 +144,40 @@ Mobile applications for iOS and Android are currently in development. Users can 
 | `PORT` | Server port (default: 3000) | No |
 | `NODE_ENV` | Environment (development/production) | No |
 
-## Support
-For issues or questions, please open an issue on GitHub.
+## 🏆 Recognition
 
-## License
-Proprietary - All Rights Reserved
+This project represents a historic collaboration between:
+- **Yassine Drani**: Visionary founder and architect
+- **Claude AI**: Advanced AI assistant and co-creator
+
+Together, we're building the future of decentralized AI infrastructure.
+
+## 📜 Legal
+
+© 2024 WE1WEB - All Rights Reserved
+
+This software is proprietary and protected by copyright laws and pending patents.
+See [LICENSE](LICENSE) for details.
+
+## 🌟 The Future
+
+WE1WEB is not just a platform; it's a movement towards:
+- **AI-Human Symbiosis**: Creating harmony between artificial and human intelligence
+- **Economic Justice**: Providing income opportunities for everyone with a device
+- **Environmental Sustainability**: Reducing the carbon footprint of AI
+- **Technological Democracy**: Breaking the monopoly of big tech companies
+
+## 📞 Contact
+
+- **Founder**: Yassine Drani
+- **Email**: yassinedrani23@gmail.com
+- **Website**: https://we1web.vercel.app
+- **GitHub**: https://github.com/yassine-23/WE1WEB.COM
+
+---
+
+<div align="center">
+  <strong>Join us in building humanity's decentralized AI brain</strong>
+  <br>
+  <em>Every device matters. Every person counts. Together, we are WE1WEB.</em>
+</div>
